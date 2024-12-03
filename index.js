@@ -9,7 +9,7 @@ async function scrapeComic(list = [INITIAL_URL], url = INITIAL_URL) {
 
   const $ = cheerio.load(body);
 
-  const nextUrl = $("a.navi-next").attr("href");
+  const nextUrl = $("a.comic-nav-next").attr("href");
 
   if (nextUrl) {
     console.log(`next comic at  ${nextUrl}`);
@@ -53,7 +53,8 @@ async function main() {
       </body>
     </html>
   `;
-  await fs.writeFile("index.html", html);
+  await fs.mkdir("dist");
+  await fs.writeFile("dist/index.html", html);
   console.log("wrote 2 file");
 }
 
